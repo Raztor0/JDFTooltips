@@ -356,7 +356,7 @@
 
 - (CGFloat)arrowHeight
 {
-    return 14.0f;
+    return 12.0f;
 }
 
 - (CGFloat)arrowWidth
@@ -435,12 +435,14 @@
     
     //// Group
     {
+        [[UIColor whiteColor] setStroke];
+        
         //// Rectangle Drawing
         CGRect rect = CGRectMake(CGRectGetMinX(frame) + 14, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 28, CGRectGetHeight(frame) - 24);
         UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect:rect  cornerRadius: 5];
         [backgroundColour setFill];
         [rectanglePath fill];
-        
+        [rectanglePath stroke];
         
         //// Bezier Drawing
         CGContextSaveGState(context);
@@ -448,13 +450,21 @@
         CGContextRotateCTM(context, -angle * M_PI / 180);
         
         UIBezierPath* bezierPath = UIBezierPath.bezierPath;
-        [bezierPath moveToPoint: CGPointMake(-0, 0.02)];
-        [bezierPath addCurveToPoint: CGPointMake(-7, arrowHeight) controlPoint1: CGPointMake(-2, 0.02) controlPoint2: CGPointMake(-7, arrowHeight)];
-        [bezierPath addLineToPoint: CGPointMake(7, arrowHeight)];
-        [bezierPath addCurveToPoint: CGPointMake(-0, 0.02) controlPoint1: CGPointMake(7, arrowHeight) controlPoint2: CGPointMake(2, 0.02)];
-        [bezierPath closePath];
+        [bezierPath moveToPoint:CGPointMake(-7.0, arrowHeight)];
+        [bezierPath addCurveToPoint:CGPointMake(0, 0.5) controlPoint1:CGPointMake(-[self arrowWidth]/6, 0.5) controlPoint2:CGPointMake(-[self arrowWidth]/6, 0.5)];
+        [bezierPath addCurveToPoint:CGPointMake(7.0, arrowHeight) controlPoint1:CGPointMake([self arrowWidth]/6, 0.5) controlPoint2:CGPointMake([self arrowWidth]/6, 0.5)];
         [backgroundColour setFill];
         [bezierPath fill];
+        [bezierPath stroke];
+        
+        UIBezierPath *bezierLine = UIBezierPath.bezierPath;
+        [bezierLine moveToPoint:CGPointMake(-7, arrowHeight)];
+        [bezierLine addLineToPoint:CGPointMake(7, arrowHeight)];
+        [bezierLine addLineToPoint:CGPointMake(7, arrowHeight + 1)];
+        [bezierLine addLineToPoint:CGPointMake(-7, arrowHeight + 1)];
+        [bezierLine closePath];
+        [backgroundColour setFill];
+        [bezierLine fill];
         
         CGContextRestoreGState(context);
     }
