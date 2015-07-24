@@ -435,14 +435,12 @@
     
     //// Group
     {
-        [[[UIColor whiteColor] colorWithAlphaComponent:0.6f] setStroke];
         
         //// Rectangle Drawing
         CGRect rect = CGRectMake(CGRectGetMinX(frame) + 14, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 28, CGRectGetHeight(frame) - 24);
         UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect:rect  cornerRadius: 5];
         [backgroundColour setFill];
         [rectanglePath fill];
-        [rectanglePath stroke];
         
         //// Bezier Drawing
         CGContextSaveGState(context);
@@ -453,7 +451,6 @@
         [bezierPath moveToPoint:CGPointMake(-7.0, arrowHeight)];
         [bezierPath addCurveToPoint:CGPointMake(7.0, arrowHeight) controlPoint1:CGPointMake(0, 0) controlPoint2:CGPointMake(0, 0)];
         [bezierPath fill];
-        [bezierPath stroke];
         
         UIBezierPath *bezierLine = UIBezierPath.bezierPath;
         [bezierLine moveToPoint:CGPointMake(-7, arrowHeight)];
