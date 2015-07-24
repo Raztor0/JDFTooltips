@@ -451,7 +451,7 @@
         
         UIBezierPath* bezierPath = UIBezierPath.bezierPath;
         [bezierPath moveToPoint:CGPointMake(-7.0, arrowHeight)];
-        [bezierPath addQuadCurveToPoint:CGPointMake(7.0, arrowHeight) controlPoint:CGPointMake(0, 0.5)];[backgroundColour setFill];
+        [bezierPath addCurveToPoint:CGPointMake(7.0, arrowHeight) controlPoint1:CGPointMake(0, 0) controlPoint2:CGPointMake(0, 0)];
         [bezierPath fill];
         [bezierPath stroke];
         
